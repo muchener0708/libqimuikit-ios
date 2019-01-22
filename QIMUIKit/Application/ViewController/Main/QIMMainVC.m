@@ -150,7 +150,7 @@
     //        [self peQTalkSuggestRNJumpManagerrformSelector:@selector(autoLogin) withObject:nil afterDelay:0.3];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginNotify:) name:kNotificationLoginState object:nil];
     //    }
-    if ([QIMKit getQIMProjectType] == QIMProjectTypeQTalk && self.skipLogin) {
+    if (([QIMKit getQIMProjectType] == QIMProjectTypeQTalk) && self.skipLogin) {
         [self autoLogin];
     }
 #if defined (QIMOPSRNEnable) && QIMOPSRNEnable == 1
@@ -179,7 +179,7 @@
 
 - (NSString *)navTitle {
     if (!_navTitle) {
-        NSString *title = [QIMKit getQIMProjectType] == QIMProjectTypeQChat ? @"QChat" : @"QTalk";
+        NSString *title = [QIMKit getQIMProjectTitleName];
         _navTitle = title;
     }
     return _navTitle;
@@ -245,7 +245,7 @@
                 weakSelf.navTitle = nil;
                 [[QIMNavBackBtn sharedInstance] updateNotReadCount:0];
             } else {
-                NSString *appName = [QIMKit getQIMProjectType] == QIMProjectTypeQChat ? @"QChat" : @"QTalk";
+                NSString *appName = [QIMKit getQIMProjectTitleName];
                 weakSelf.navTitle = [NSString stringWithFormat:@"%@(%ld)", appName, (long)appCount];
                 [[QIMNavBackBtn sharedInstance] updateNotReadCount:appCount];
             }

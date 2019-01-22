@@ -562,7 +562,8 @@
 
 - (void)initWritingAnimations{
     if (_writingLayer == nil) {
-        UIBezierPath *bezierPath = [self transformToBezierPath:[QIMKit getQIMProjectType] == QIMProjectTypeQChat ? @"QChat" : @"QTalk"];
+        UIBezierPath *bezierPath = [self transformToBezierPath:[QIMKit getQIMProjectTitleName]];
+       
         CGSize size= CGPathGetBoundingBox(bezierPath.CGPath).size;
         _writingLayer = [CAShapeLayer layer];
         _writingLayer.bounds = CGPathGetBoundingBox(bezierPath.CGPath);

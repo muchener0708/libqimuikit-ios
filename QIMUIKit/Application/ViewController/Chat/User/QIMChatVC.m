@@ -1403,10 +1403,10 @@
             image = [UIImage imageWithContentsOfFile:[[QIMDataController getInstance] getSourcePath:@"chatBGImageFor_Common"]];
         }
         if (image) {
-            _chatBGImageView.image = image;
-            [self.view insertSubview:_chatBGImageView belowSubview:_tableView];
+            self.chatBGImageView.image = image;
+            [self.view insertSubview:self.chatBGImageView belowSubview:_tableView];
         } else {
-            [_chatBGImageView removeFromSuperview];
+            [self.chatBGImageView removeFromSuperview];
         }
     } else {
         [_tableView setBackgroundColor:[UIColor qtalkChatBgColor]];
@@ -3590,7 +3590,7 @@ static CGPoint tableOffsetPoint;
         }
     } else {
         if (buttonIndex == 1) {
-            QIMChatBGImageSelectController *chatBGImageSelectVC = [[QIMChatBGImageSelectController alloc] initWithCurrentBGImage:_chatBGImageView.image];
+            QIMChatBGImageSelectController *chatBGImageSelectVC = [[QIMChatBGImageSelectController alloc] initWithCurrentBGImage:self.chatBGImageView.image];
             chatBGImageSelectVC.userID = self.chatId;
             chatBGImageSelectVC.delegate = self;
             chatBGImageSelectVC.isFromChat = YES;

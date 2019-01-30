@@ -242,7 +242,6 @@
         {
             if (buttonIndex == 1) {
                 [[QIMKit sharedInstance] setUserObject:@(![QIMKit sharedInstance].qimNav_Debug) forKey:@"QC_Debug"];
-//                [[QIMKit sharedInstance] userObjectForKey:@"QC_Debug"];
                 [self onSave];
             }
         }

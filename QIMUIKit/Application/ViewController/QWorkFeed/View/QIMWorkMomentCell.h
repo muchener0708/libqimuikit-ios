@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //操作Moment
 - (void)didControlPanelMoment:(QIMWorkMomentCell *)cell;
+//操作Moment
+- (void)didControlDebugPanelMoment:(QIMWorkMomentCell *)cell;
 // 评论
 - (void)didAddComment:(QIMWorkMomentCell *)cell;
 // 查看全文/收起
@@ -46,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *timeLab;
 // 操作按钮
 @property (nonatomic, strong) UIButton *controlBtn;
+//操作按钮
+@property (nonatomic, strong) UIButton *controlDebugBtn;
 // 查看全文按钮
 @property (nonatomic, strong) UIButton *showAllBtn;
 // 内容

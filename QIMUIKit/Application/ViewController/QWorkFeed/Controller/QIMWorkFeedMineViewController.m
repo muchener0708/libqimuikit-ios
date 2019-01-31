@@ -53,7 +53,6 @@
     [self.view addSubview:self.mainTableView];
     __weak typeof(self) weakSelf = self;
     [[QIMKit sharedInstance] getWorkMomentWithLastMomentTime:0 withUserXmppId:self.userId WihtLimit:0 WithOffset:20 withFirstLocalMoment:YES WihtComplete:^(NSArray * _Nonnull array) {
-        NSLog(@"arrray3 : %@", array);
         if (array.count) {
             [weakSelf.workMomentList removeAllObjects];
             for (NSDictionary *momentDic in array) {

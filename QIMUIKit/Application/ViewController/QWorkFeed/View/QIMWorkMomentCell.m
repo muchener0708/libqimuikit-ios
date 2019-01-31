@@ -122,6 +122,13 @@ CGFloat maxLimitHeight = 0;
     [_controlBtn addTarget:self action:@selector(controlPanelClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_controlBtn];
     
+    _controlDebugBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _controlDebugBtn.frame = CGRectMake(_controlBtn.left - 30, _nameLab.top, 19, 19);
+    [_controlDebugBtn setImage:[UIImage qimIconWithInfo:[QIMIconInfo iconInfoWithText:@"\U0000f1cd" size:28 color:[UIColor redColor]]] forState:UIControlStateNormal];
+    _controlDebugBtn.centerY = _nameLab.centerY;
+    [_controlDebugBtn addTarget:self action:@selector(controlDebugPanelClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_controlDebugBtn];
+    
     // 正文视图
     _contentLabel = [[QIMWorkMomentLabel alloc] init];
     _contentLabel.font = [UIFont systemFontOfSize:15];
@@ -194,6 +201,10 @@ CGFloat maxLimitHeight = 0;
         self.controlBtn.hidden = NO;
     } else {
         self.controlBtn.hidden = YES;
+    }
+    if ([[[QIMKit sharedInstance] qimNav_getDebugers] containsObject:[QIMKit getLastUserName]]) {
+        
+        self.controlDebugBtn.hidden = NO;
     }
     _showAllBtn.hidden = YES;
     if (moment.isAnonymous == NO) {
@@ -326,6 +337,12 @@ CGFloat maxLimitHeight = 0;
 - (void)controlPanelClicked:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didControlPanelMoment:)]) {
         [self.delegate didControlPanelMoment:self];
+    }
+}
+
+- (void)controlDebugPanelClicked:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didControlDebugPanelMoment:)]) {
+        [self.delegate didControlDebugPanelMoment:self];
     }
 }
 

@@ -178,7 +178,6 @@
     if (notNeedReloadMomentView == NO) {
         __weak typeof(self) weakSelf = self;
         [[QIMKit sharedInstance] getWorkMomentWithLastMomentTime:0 withUserXmppId:self.userId WihtLimit:10 WithOffset:0 withFirstLocalMoment:YES WihtComplete:^(NSArray * _Nonnull array) {
-            NSLog(@"arrray3 : %@", array);
             if (array.count) {
                 [weakSelf.workMomentList removeAllObjects];
                 for (NSDictionary *momentDic in array) {
@@ -202,7 +201,6 @@
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [[QIMKit sharedInstance] getWorkMomentWithLastMomentTime:0 withUserXmppId:self.userId WihtLimit:20 WithOffset:0 withFirstLocalMoment:NO WihtComplete:^(NSArray * _Nonnull moments) {
-            QIMVerboseLog(@"moments : %@", moments);
             if (moments.count > 0) {
                 [weakSelf.workMomentList removeAllObjects];
                 for (NSDictionary *momentDic in moments) {
@@ -383,6 +381,27 @@
     [actionSheet show];
 }
 
+- (void)didControlDebugPanelMoment:(QIMWorkMomentCell *)cell {
+    NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
+    [indexSet addIndex:1];
+    __weak __typeof(self) weakSelf = self;
+    LCActionSheet *actionSheet = [LCActionSheet sheetWithTitle:nil
+                                             cancelButtonTitle:@"取消"
+                                                       clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
+                                                           __typeof(self) strongSelf = weakSelf;
+                                                           if (!strongSelf) {
+                                                               return;
+                                                           }
+                                                           if (buttonIndex == 1) {
+                                                               [strongSelf didLookOriginMoment:cell];
+                                                           }
+                                                       }
+                                         otherButtonTitleArray:@[@"查看原帖"]];
+    actionSheet.destructiveButtonIndexSet = indexSet;
+    actionSheet.destructiveButtonColor = [UIColor qim_colorWithHex:0xF4333C];
+    [actionSheet show];
+}
+
 - (void)didClickSmallImage:(QIMWorkMomentModel *)model WithCurrentTag:(NSInteger)tag {
     //初始化图片浏览控件
     if (model) {
@@ -447,6 +466,12 @@
     detailVc.momentId = cell.moment.momentId;
     self.notNeedReloadMomentView = YES;
     [self.navigationController pushViewController:detailVc animated:YES];
+}
+
+//查看原始帖子
+- (void)didLookOriginMoment:(QIMWorkMomentCell *)cell {
+    NSString *originMoment = cell.moment.description;
+    [[UIPasteboard generalPasteboard] setString:originMoment];
 }
 
 // 查看全文/收起

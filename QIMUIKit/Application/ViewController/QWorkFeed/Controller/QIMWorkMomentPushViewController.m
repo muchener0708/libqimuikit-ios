@@ -350,7 +350,8 @@
         [self.navigationController presentViewController:alertVc animated:YES completion:nil];
     } else {
         [self showProgressHUDWithMessage:@"动态上传中..."];
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self showProgressHUDWithMessage:@"动态上传中..."];
             NSMutableDictionary *momentDic = [NSMutableDictionary dictionaryWithCapacity:3];
             [momentDic setObject:[NSString stringWithFormat:@"0-%@", [QIMUUIDTools UUID]] forKey:@"uuid"];
             [momentDic setObject:[QIMKit getLastUserName] forKey:@"owner"];

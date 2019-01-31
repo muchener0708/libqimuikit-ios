@@ -487,7 +487,7 @@ static NSMutableDictionary *__checkGroupMembersCardDic = nil;
 //    }
     [self refreshChatBGImageView];
     
-    //    添加整个view的点击事件，当点击页面空白地方时，输入框收回
+//    添加整个view的点击事件，当点击页面空白地方时，输入框收回
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHandler:)];
     gesture.delegate = self;
     gesture.numberOfTapsRequired = 1;
@@ -2662,14 +2662,6 @@ static CGPoint tableOffsetPoint;
     //    [emptyTextVc addAction:okAction];
     //    [self presentViewController:emptyTextVc animated:YES completion:nil];
 }
-
-- (void)sendImageUrl:(NSString *)imageUrl {
-    
-    [[self view] setFrame:_rootViewFrame];
-    if ([imageUrl length] > 0) {
-    }
-}
-
 
 - (void)sendImageData:(NSData *)imageData {
     if (imageData) {

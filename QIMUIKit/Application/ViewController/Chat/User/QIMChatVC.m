@@ -2817,16 +2817,6 @@
     
 }
 
-- (void)sendImageUrl:(NSString *)imageUrl {
-    
-    [[self view] setFrame:_rootViewFrame];
-    
-    if ([imageUrl length] > 0) {
-        
-        //        [[IMXmppManager sharedInstance] sendImageUrl:imageUrl ToUserId:[[self chatSession] userId]];
-    }
-}
-
 - (void)willSendImageData:(NSData *)imageData {
     _willSendImageData = imageData;
 }

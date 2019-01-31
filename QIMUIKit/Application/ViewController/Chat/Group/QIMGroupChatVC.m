@@ -1246,8 +1246,6 @@ static NSMutableDictionary *__checkGroupMembersCardDic = nil;
 }
 
 - (void)onFileDidUpload:(NSNotification *)notify {
-//    Comment by lilulucas.li
-//    [self refreshCellForMsg:notify.object];
 }
 
 - (void)collectionEmotionNotFoundNotificationHandle:(NSNotification *)notify {

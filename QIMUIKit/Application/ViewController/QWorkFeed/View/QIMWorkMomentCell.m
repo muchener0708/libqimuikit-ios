@@ -205,6 +205,8 @@ CGFloat maxLimitHeight = 0;
     if ([[[QIMKit sharedInstance] qimNav_getDebugers] containsObject:[QIMKit getLastUserName]]) {
         
         self.controlDebugBtn.hidden = NO;
+    } else {
+        self.controlDebugBtn.hidden = YES;
     }
     _showAllBtn.hidden = YES;
     if (moment.isAnonymous == NO) {
